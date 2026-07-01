@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentForge — Multi-Agent Orchestration</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#9889;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ Sidebar : Agent Roster ============ -->
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">⌁</span>
+      <div class="brand-text">
+        <div class="brand-title">AgentForge</div>
+        <div class="brand-sub">multi-agent orchestration engine</div>
+      </div>
+    </div>
+
+    <div class="roster">
+      <div class="roster-label">Agent Roster</div>
+
+      <div class="agent-card" data-agent="planner">
+        <div class="agent-dot"></div>
+        <div class="agent-meta">
+          <div class="agent-name">Planner</div>
+          <div class="agent-role">decomposes the goal</div>
+        </div>
+      </div>
+
+      <div class="agent-card" data-agent="researcher">
+        <div class="agent-dot"></div>
+        <div class="agent-meta">
+          <div class="agent-name">Researcher</div>
+          <div class="agent-role">web_search · calculator</div>
+        </div>
+      </div>
+
+      <div class="agent-card" data-agent="coder">
+        <div class="agent-dot"></div>
+        <div class="agent-meta">
+          <div class="agent-name">Coder</div>
+          <div class="agent-role">execute_python · calculator</div>
+        </div>
+      </div>
+
+      <div class="agent-card" data-agent="critic">
+        <div class="agent-dot"></div>
+        <div class="agent-meta">
+          <div class="agent-name">Critic</div>
+          <div class="agent-role">reviews & flags gaps</div>
+        </div>
+      </div>
+
+      <div class="agent-card" data-agent="synthesizer">
+        <div class="agent-dot"></div>
+        <div class="agent-meta">
+          <div class="agent-name">Synthesizer</div>
+          <div class="agent-role">merges final answer</div>
+        </div>
+      </div>
+
+      <div class="agent-card" data-agent="memory">
+        <div class="agent-dot"></div>
+        <div class="agent-meta">
+          <div class="agent-name">Memory</div>
+          <div class="agent-role">TF-IDF semantic recall</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="conn-row">
+        <span class="conn-dot" id="connDot"></span>
+        <span id="connLabel">connecting…</span>
+      </div>
+      <div class="history-label">Recent Tasks</div>
+      <div id="historyList" class="history-list"></div>
+    </div>
+  </aside>
+
+  <!-- ============ Main : Pipeline + Console ============ -->
+  <main class="main">
+
+    <header class="topbar">
+      <div>
+        <div class="topbar-title">Mission Control</div>
+        <div class="topbar-sub">Give the supervisor a goal. Watch specialist agents plan, research, code, critique and synthesize in real time.</div>
+      </div>
+    </header>
+
+    <!-- Signature element: live pipeline strip -->
+    <div class="pipeline" id="pipeline">
+      <div class="pipe-node" data-agent="planner"><span class="pipe-num">01</span><span>Plan</span></div>
+      <div class="pipe-line"></div>
+      <div class="pipe-node" data-agent="researcher"><span class="pipe-num">02</span><span>Research / Code</span></div>
+      <div class="pipe-line"></div>
+      <div class="pipe-node" data-agent="critic"><span class="pipe-num">03</span><span>Critique</span></div>
+      <div class="pipe-line"></div>
+      <div class="pipe-node" data-agent="synthesizer"><span class="pipe-num">04</span><span>Synthesize</span></div>
+    </div>
+
+    <section class="console" id="console">
+      <div class="console-empty" id="consoleEmpty">
+        <div class="empty-glyph">⌁</div>
+        <div class="empty-title">No task running</div>
+        <div class="empty-sub">Try: “Compare the time complexity of quicksort vs mergesort and verify with a benchmark script”</div>
+      </div>
+    </section>
+
+    <form class="composer" id="composer">
+      <input id="goalInput" type="text" autocomplete="off"
+        placeholder="Describe a goal for the agent team… e.g. 'Research the current Mars rover missions and summarize their objectives'"/>
+      <button type="submit" id="sendBtn">
+        <span>Dispatch</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </form>
+  </main>
+
+  <!-- ============ Result Panel ============ -->
+  <aside class="resultpanel" id="resultPanel">
+    <div class="result-label">Final Output</div>
+    <div class="result-body" id="resultBody">
+      <div class="result-placeholder">The synthesized answer will appear here once the agent team completes the task.</div>
+    </div>
+  </aside>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

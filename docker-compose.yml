@@ -1,0 +1,16 @@
+services:
+  agentforge:
+    build: .
+    container_name: agentforge
+    ports:
+      - "8001:8001"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - AGENTFORGE_MODEL=${AGENTFORGE_MODEL:-llama-3.3-70b-versatile}
+      - AGENTFORGE_MAX_STEPS=${AGENTFORGE_MAX_STEPS:-6}
+    volumes:
+      - agentforge_data:/app/backend/data
+    restart: unless-stopped
+
+volumes:
+  agentforge_data:
